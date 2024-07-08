@@ -1,0 +1,42 @@
+DESIGN A FEW QUESTIONS AND CHECK THE CORRECT ANSWER : 
+
+import java.util.Scanner;
+public class first {
+    private String[][] questions = {
+            {"What is the capital of Italy?", "A. London", "B. Paris", "C. Rome", "C"},
+            {"Which planet is known as the Blue Planet?", "A. Venus", "B. Mars", "C. Earth", "C"},
+            {"What is the chemical symbol for water?", "A. H2O", "B. CO2", "C. NaCl", "A"}
+    };
+    private int score = 0;
+    public void displayQuestion(String[] question) {
+        System.out.println(question[0]);
+                for (int i = 1; i < question.length - 1; i++) {
+            System.out.println(question[i]);
+        }
+        
+        System.out.print("Enter your answer (A, B, or C): ");
+    }
+public void checkAnswer(String userAnswer, String[] question) {
+        if (userAnswer.equalsIgnoreCase(question[question.length - 1])) {
+            System.out.println("Correct! ");
+            score++;
+        } else {
+            System.out.println("Incorrect. The correct answer is: " + question[question.length - 1]);
+        }
+    }
+public void runQuiz() {
+        Scanner scanner = new Scanner(System.in);
+
+        for (String[] q : questions) {
+            displayQuestion(q);
+            String userAnswer = scanner.next();
+            checkAnswer(userAnswer, q);
+        }
+
+        System.out.println("Quiz Complete! Your final score is: " + score);
+    }
+public static void main(String[] args) {
+        first quizGame = new first();
+        quizGame.runQuiz();
+    }
+}
