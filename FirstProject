@@ -1,42 +1,56 @@
-DESIGN A FEW QUESTIONS AND CHECK THE CORRECT ANSWER : 
+CODE FOR WRITING FEW QUESTIONS AND CHECK FOR CORRECT ANSWER:
 
-import java.util.Scanner;
-public class first {
-    private String[][] questions = {
-            {"What is the capital of Italy?", "A. London", "B. Paris", "C. Rome", "C"},
-            {"Which planet is known as the Blue Planet?", "A. Venus", "B. Mars", "C. Earth", "C"},
-            {"What is the chemical symbol for water?", "A. H2O", "B. CO2", "C. NaCl", "A"}
-    };
-    private int score = 0;
-    public void displayQuestion(String[] question) {
-        System.out.println(question[0]);
-                for (int i = 1; i < question.length - 1; i++) {
-            System.out.println(question[i]);
-        }
-        
-        System.out.print("Enter your answer (A, B, or C): ");
-    }
-public void checkAnswer(String userAnswer, String[] question) {
-        if (userAnswer.equalsIgnoreCase(question[question.length - 1])) {
-            System.out.println("Correct! ");
-            score++;
-        } else {
-            System.out.println("Incorrect. The correct answer is: " + question[question.length - 1]);
-        }
-    }
-public void runQuiz() {
-        Scanner scanner = new Scanner(System.in);
 
-        for (String[] q : questions) {
-            displayQuestion(q);
-            String userAnswer = scanner.next();
-            checkAnswer(userAnswer, q);
-        }
+class Quiz:
+    def __init__(self, questions):
+        self.questions = questions
+        self.score = 0
+    def display_question(self, question, options):
+        print(question)
+        for i, option in enumerate(options, 1):
+            print(f"{i}. {option}")
+        user_answer = input("Your answer (1-4): ")
+        return int(user_answer)
+    def check_answer(self, user_answer, correct_answer):
+        if user_answer == correct_answer:
+            print("Correct!")
+            self.score += 1
+        else:
+            print(f"Sorry, the correct answer is {correct_answer}.")
+    def conduct_quiz(self):
+        for question, options, correct_answer in self.questions:
+            user_answer = self.display_question(question, options)
+            self.check_answer(user_answer, correct_answer)
+        print(f"Your final score is {self.score}/{len(self.questions)}")
+questions = [
+    ("What color is the sky on a clear day?", ["Red", "Blue", "Green", "Yellow"], 2),
+    ("How many legs does a spider have?", ["6", "8", "10", "12"], 2),
+    ("Which fruit is known as the 'king of fruits'?", ["Apple", "Banana", "Mango", "Grapes"], 3)
+]
+quiz = Quiz(questions)
+quiz.conduct_quiz()
 
-        System.out.println("Quiz Complete! Your final score is: " + score);
-    }
-public static void main(String[] args) {
-        first quizGame = new first();
-        quizGame.runQuiz();
-    }
-}
+
+OUTPUT:
+What color is the sky on a clear day?
+1. Red
+2. Blue
+3. Green
+4. Yellow
+Your answer (1-4): 2
+Correct!
+How many legs does a spider have?
+1. 6
+2. 8
+3. 10
+4. 12
+Your answer (1-4): 3
+Sorry, the correct answer is 2.
+Which fruit is known as the 'king of fruits'?
+1. Apple
+2. Banana
+3. Mango
+4. Grapes
+Your answer (1-4): 2
+Sorry, the correct answer is 3.
+Your final score is 1/3
