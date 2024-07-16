@@ -1,0 +1,22 @@
+CODE:
+
+def count_words(text):
+    words = text.split()
+    return len(words)
+
+def main():
+    user_input = input("Please enter a sentence or paragraph: ")
+    
+    if not user_input.strip():
+        print("Error: You entered an empty string. Please enter some text.")
+        return
+    word_count = count_words(user_input)
+    print(f"The number of words in the input text is: {word_count}")
+if __name__ == "__main__":
+    main()
+
+
+OUTPUT:
+
+Please enter a sentence or paragraph:  hello I am a student in Sri krishna College of Technology.Now I am doing a Internship in motioncut .
+The number of words in the input text is: 19
