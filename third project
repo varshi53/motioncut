@@ -1,0 +1,112 @@
+CODE TO ENTER THE EXPENSES AND CHECK MONTHY SUMMARY MONEY AND CATEGORY WISE EXPENSES:
+
+expenses = {}
+def add_expense():
+    try:
+        amount = float(input("Enter amount: "))
+        description = input("Enter description: ")
+        category = input("Enter category: ")
+        if category in expenses:
+            expenses[category].append({"amount": amount, "description": description})
+        else:
+            expenses[category] = [{"amount": amount, "description": description}]
+    except ValueError:
+        print("Invalid amount. Please enter a valid number.")
+def view_expenses():
+    try:
+        for category, expense_list in expenses.items():
+            print(f"Category: {category}")
+            for expense in expense_list:
+                print(f"Amount: {expense['amount']}, Description: {expense['description']}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+def view_monthly_summaries():
+    monthly_summaries = {}
+    for category, expense_list in expenses.items():
+        total_amount = sum(expense["amount"] for expense in expense_list)
+        monthly_summaries[category] = total_amount
+    print("Monthly Summaries:")
+    for category, total_amount in monthly_summaries.items():
+        print(category,":", total_amount)
+
+def view_category_wise_expenditure():
+    category_wise_expenditure = {}
+    for category, expense_list in expenses.items():
+        total_amount = sum(expense["amount"] for expense in expense_list)
+        category_wise_expenditure[category] = total_amount
+    print("Category-wise Expenditure:")
+    for category, total_amount in category_wise_expenditure.items():
+        print(f"{category}: {total_amount}")
+while True:
+    print("1. Add Expense")
+    print("2. View Expenses")
+    print("3. View Monthly Summaries")
+    print("4. View Category-wise Expenditure")
+    print("5. Exit")
+    choice = input("Choose an option: ")
+    if choice == "1":
+        add_expense()
+    elif choice == "2":
+        view_expenses()
+    elif choice == "3":
+        view_monthly_summaries()
+    elif choice == "4":
+        view_category_wise_expenditure()
+    elif choice == "5":
+        break
+    else:
+        print("Invalid option. Please choose a valid option.")
+
+
+
+OUTPUT:
+
+1. Add Expense
+2. View Expenses
+3. View Monthly Summaries
+4. View Category-wise Expenditure
+5. Exit
+Choose an option: 1
+Enter amount: 3000
+Enter description: happy
+Enter category: food
+1. Add Expense
+2. View Expenses
+3. View Monthly Summaries
+4. View Category-wise Expenditure
+5. Exit
+Choose an option: 1
+Enter amount: 4000
+Enter description: good
+Enter category: food
+1. Add Expense
+2. View Expenses
+3. View Monthly Summaries
+4. View Category-wise Expenditure
+5. Exit
+Choose an option: 2
+Category: food
+Amount: 3000.0, Description: happy
+Amount: 4000.0, Description: good
+1. Add Expense
+2. View Expenses
+3. View Monthly Summaries
+4. View Category-wise Expenditure
+5. Exit
+Choose an option: 3
+Monthly Summaries:
+food : 7000.0
+1. Add Expense
+2. View Expenses
+3. View Monthly Summaries
+4. View Category-wise Expenditure
+5. Exit
+Choose an option: 4
+Category-wise Expenditure:
+food: 7000.0
+1. Add Expense
+2. View Expenses
+3. View Monthly Summaries
+4. View Category-wise Expenditure
+5. Exit
+Choose an option:
